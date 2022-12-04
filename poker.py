@@ -21,14 +21,15 @@ class poker:
     def add_card(self, n):
         if n >= self.players:
            print('Player index out of range stoopid.')
+           return
         self.decks[n].append(self.shuffledCards.pop(0))
     def add_to_table(self):
         self.table.append(self.shuffledCards.pop(0))
         
-test = poker()
+test = poker(5)
 print(test.shuffledCards)
 print(len(test.shuffledCards))
-test.add_card(1)
+test.add_card(4)
 print(test.decks)
 test.add_to_table()
 print(test.table)
