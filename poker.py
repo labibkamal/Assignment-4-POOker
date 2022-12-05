@@ -7,8 +7,8 @@ class poker:
     orderedCards = []
     nums = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K']
     suits = ['D', 'C', 'S', 'H']
-    for i in suits:
-            for j in nums:
+    for i in nums:
+            for j in suits:
                 orderedCards.append(i+j)
     def __init__(self, players = 2):
         self.players = players
