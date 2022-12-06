@@ -1,7 +1,6 @@
 # my email: labibkamal20@gmail.com
 
 import random
-from tempfile import tempdir
 
 class poker:
     orderedCards = []
@@ -33,41 +32,52 @@ class poker:
         return 
     def IsFourofaKind(self, lst):
         # returns true of 4 of 5 cards of the list are of the same rank
-        return
+        lst_joined = ' '.join(lst)
+        for i in lst:
+            if lst_joined.count(i[0]) >= 4:
+                return True 
+        return False
     def IsFullHouse(self, lst):
         # returns true of 3 cards are of same rank and 2 cards are of same rank
         return
     def IsFlush(self, lst):
         # returns true if all 5 cards have the same suit
-        return
+        lst_joined = ' '.join(lst)
+        for i in lst:
+            if lst_joined.count(i[1]) >= 5:
+                return True 
+        return False
     def IsStraight(self, lst):
         # returns true if all 5 cards are in order
         return
     def IsThreeofaKind(self, lst):
         # returns true is 3 cards have the same rank
-        return
+        lst_joined = ' '.join(lst)
+        for i in lst:
+            if lst_joined.count(i[0]) >= 3:
+                return True
+        return False
+
     def IsTwoPairs(self, lst):
         # returns true if there are 2 pairs of cards of the same rank
         temp = lst.copy()
+        temp_joined = ' '.join(temp)
         pairs = 0
         for i in temp:
-            for j in i[0]:
-                for k in temp:
-                    if j == k[0]:
-                       pairs += 1
-                       temp.pop(temp.index(i))
+            if temp_joined.count(i[0]) >= 2:
+                pairs += 1
+                temp.pop(temp.index(i))
         if pairs >= 2:
             return True
         else:
             return False               
     
-    def IsOnePair(self, lst): #Doesn't work cause its iterating over the the iteration twice.
+    def IsOnePair(self, lst): 
         # returns true if there are 2 cards of the same rank
+        lst_joined = ' '.join(lst)
         for i in lst:
-            for j in i[0]:
-                for k in lst:
-                    if j == k[0]:
-                        return True
+            if lst_joined.count(i[0]) >= 2:
+                return True
         return False
         
     
