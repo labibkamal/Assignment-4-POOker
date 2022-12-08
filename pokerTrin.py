@@ -29,12 +29,7 @@ class poker:
         self.table.append(self.shuffledCards.pop(0))
     def IsStraightFlush(self, lst):
         # returns True is all 5 cards in the list are of the same rank and of same order
-        straight = poker.IsStraight(lst)
-        flush = poker.IsFlush(lst)
-        if straight and flush:
-            return True
-        else:
-            return False
+        return 
     def IsFourofaKind(self, lst):
         # returns true of 4 of 5 cards of the list are of the same rank
         lst_joined = ' '.join(lst)
@@ -44,23 +39,7 @@ class poker:
         return False
     def IsFullHouse(self, lst):
         # returns true of 3 cards are of same rank and 2 cards are of same rank
-        temp = lst.copy()
-        lst_joined = ' '.join(lst)
-        pair = 0
-        trip = 0
-        trip_rank = 0
-        for i in temp:
-            if lst_joined.count(i[0]) >= 3:
-                trip = True
-                trip_rank = i[0]
-        for i in temp:
-            if i != trip_rank and lst_joined.count(i[0]) >= 2:
-                pair = True
-        if trip and pair:
-            return True
-        else:
-            return False
-        
+        return
     def IsFlush(self, lst):
         # returns true if all 5 cards have the same suit
         lst_joined = ' '.join(lst)
@@ -70,27 +49,7 @@ class poker:
         return False
     def IsStraight(self, lst):
         # returns true if all 5 cards are in order
-        rank_only = []
-        for i in lst:
-            rank_only.append(i[0])
-        temp = -1
-        for i in poker.nums: 
-            if i in rank_only: 
-                temp = rank_only.index(i)
-                break
-        #print(temp)
-        count = 1
-        for i in range(temp, len(poker.nums)):
-            if i < (len(poker.nums) - 1):
-                if (poker.nums[i+1] in rank_only):
-                    count += 1
-                    continue
-        print(count)
-        if count >= 5:
-            return True
-        else: 
-            return False
-        
+        return
     def IsThreeofaKind(self, lst):
         # returns true is 3 cards have the same rank
         lst_joined = ' '.join(lst)
@@ -120,65 +79,36 @@ class poker:
             if lst_joined.count(i[0]) >= 2:
                 return True
         return False
-
-
+        
 class TexasHoldem(poker):
     def __init__(self, players):
         super().__init__(players)
         
     def deal(self):
-        for i in range(2):
+        for i in range(1):
             for i in range(self.players):
                 super().add_card(i)
-        for i in range(5):
+        for i in range(4):
             super().add_to_table()
-        
-    def check_hand(self, lst):
-        if poker.IsStraightFlush(lst):
-            return 'Straight Flush'
-        elif poker.IsFourofaKind(lst):
-            return 'Four of a Kind'
-        elif poker.IsFullHouse(lst):
-            return 'Full House'
-        elif poker.IsFlush(lst):
-            return 'Flush'
-        elif poker.IsStraight(lst):
-            return 'Straight'
-        elif poker.IsThreeofaKind(lst):
-            return 'Three of a Kind'
-        elif poker.IsTwoPairs(lst):
-            return 'Two Pairs'
-        elif poker.IsOnePair(lst):
-            return 'One Pair'
-        else:
-            return 'High Card'
-
+            
     def hands(self):
-        self.final_decks = []
-        for i in poker.decks:
-            self.final_decks.append(i + TexasHoldem.table)
-        self.final_hands= []  
-        for i in self.final_decks:
-            self.final_hands.append(TexasHoldem.check_hand(i))
-        print(self.final_hands)
+        for i in range(self.players):
+            print(self.decks[i])
 
-    #def besthand(self):
+    def besthand(self):
         
+
+    
+
+
     
 test = poker(5)
-#print(test.shuffledCards)
-#print(len(test.shuffledCards))
+print(test.shuffledCards)
+print(len(test.shuffledCards))
 test.add_card(4)
-#print(test.decks)
+print(test.decks)
 test.add_to_table()
-#print(test.table)        
-final_test = TexasHoldem(5)
-final_test.deal()
-print(final_test.decks)
-print(final_test.table)
-final_test.hands()
-
-
+print(test.table)   
 
                 
         

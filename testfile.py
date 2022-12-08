@@ -1,54 +1,28 @@
-lst = ['2H', '6S', '9H', '8C', 'QS']
+lst = ['2H', '6D', '5D', '8C', '8S']
+nums = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K']
 
-lst_joined = ' '.join(lst)
-print(lst_joined)
-def IsTwoPairs(lst):
-        # returns true if there are 2 pairs of cards of the same rank
-        temp = lst.copy()
-        temp_joined = ' '.join(temp)
-        pairs = 0
-        for i in temp:
-            if temp_joined.count(i[0]) >= 2:
-                pairs += 1
-                temp.pop(temp.index(i))
-        if pairs >= 2:
-            return True
-        else:
-            return False 
-
-print(IsTwoPairs(lst))
-
-
-'''def IsOnePair(lst):  ### Not working, check j and k values
-        # returns true if there are 2 cards of the same rank
-        for i in lst:
-            for j in i[0]:
-                for k in lst:
-                    print(j)
-                    print(k)
-                    if j == k[0]:
-                        return True
+def IsFullHouse(lst):
+    temp = lst.copy()
+    lst_joined = ' '.join(lst)
+    pair = 0
+    trip = 0
+    trip_rank = 0
+    for i in temp:
+        if lst_joined.count(i[0]) >= 3:
+            trip = True
+            trip_rank = i[0]
+    for i in temp:
+        if i != trip_rank and lst_joined.count(i[0]) >= 2:
+            pair = True
+    if trip and pair:
+        return True
+    else:
         return False
 
-print(IsOnePair(lst))'''
-
-'''
-def IsTwoPairs(lst):
-        # returns true if there are 2 pairs of cards of the same rank
-        temp = lst.copy()
-        #print(temp)
-        pairs = 0
-        for i in temp:
-            for j in i[0]:
-                for k in temp:
-                    if j == k[0]:
-                        pairs += 1
-                        print(pairs)
-                        temp.pop(temp.index(k))
-                       
-        if pairs >= 2:
-            return True
-        else:
-            return False  
+print(IsFullHouse(lst))
         
-print(IsTwoPairs(lst)) '''     
+    
+
+
+
+   
